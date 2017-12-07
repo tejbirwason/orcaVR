@@ -10,6 +10,7 @@ var scene = new THREE.Scene();
 //Create a three.js camera
 var camera = new THREE.PerspectiveCamera( 140, window.innerWidth / window.innerHeight, 2, 10000 );
 scene.add(camera);
+camera.position.z = 100;
 
 //Apply VR headset positional data to camera.
 var controls = new THREE.VRControls( camera );
@@ -27,6 +28,7 @@ var pi = 3.141592653589793238;
 var theta = 0;
 var radius = 50;
 
+// These are the actual spheres we render
 var points = [];
 for (var i = 0; i < 5; i++) {
   points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 32 ),  new THREE.MeshBasicMaterial( {color: 0x5f91e2} ) );
@@ -53,26 +55,17 @@ points[4].position.x = -30;
 points[4].position.y = 30;
 points[4].position.z = -10;
 
+
+// Floor
 var floor = new THREE.Mesh( new THREE.PlaneBufferGeometry( 100, 100, 1, 1 ), new THREE.MeshBasicMaterial( { color: 0x404040, side: THREE.DoubleSide } ) );
 floor.rotation.x = pi/2;
 floor.position.y = -50;
 scene.add( floor );
 
-// // CUBE
-// var geometry = new THREE.CubeGeometry(50,50,50);
-// var cubeMaterials = [
-//     new THREE.MeshBasicMaterial({color:0xffffff, transparent:true, opacity:0.1, side: THREE.DoubleSide}),
-//     new THREE.MeshBasicMaterial({color:0x000000, transparent:true, opacity:0.1, side: THREE.DoubleSide}),
-//     new THREE.MeshBasicMaterial({color:0x000000, transparent:true, opacity:0.1, side: THREE.DoubleSide}),
-//     new THREE.MeshBasicMaterial({color:0x000000, transparent:true, opacity:0.1, side: THREE.DoubleSide}),
-//     new THREE.MeshBasicMaterial({color:0x000000, transparent:true, opacity:0.1, side: THREE.DoubleSide}),
-//     new THREE.MeshBasicMaterial({color:0x000000, transparent:true, opacity:0.1, side: THREE.DoubleSide}),
-// ];
-// // Create a MeshFaceMaterial, which allows the cube to have different materials on each face
-// var cubeMaterial = new THREE.MeshFaceMaterial(cubeMaterials);
-// var cube = new THREE.Mesh(geometry, cubeMaterial);
-// cube.position.z = -20;
-// scene.add( cube );
+//axes
+drawAxes();
+
+
 
 
 /*
@@ -121,8 +114,29 @@ function onkey(event) {
 };
 window.addEventListener("keydown", onkey, true);
 
-function makeSphere() {
+function drawAxes() {
+  var material = new THREE.LineBasicMaterial({
+    color: 0x0000ff
+  });
 
+  var geometry = new THREE.Geometry();
+  geometry.vertices.push(
+    new THREE.Vector3( -40, -50, -40 ),
+    new THREE.Vector3( -40, -50, 40 ),
+    new THREE.Vector3( -40, 50, 40 ),
+  );
+
+  var line = new THREE.Line( geometry, material );
+  scene.add( line );
+
+  var geometry = new THREE.Geometry();
+  geometry.vertices.push(
+    new THREE.Vector3( -40, -50, 40 ),
+    new THREE.Vector3( 40, -50, 40 )
+  );
+
+  var line = new THREE.Line( geometry, material );
+  scene.add( line );
 }
 
 /*
