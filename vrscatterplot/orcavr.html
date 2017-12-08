@@ -155,6 +155,17 @@
                 floor.position.y = -50;
                 scene.add( floor );
 */
+
+				var text1 = createText("Taxes");
+				text1.position.set(150, -90, 40);
+				scene.add(text1);
+				var text2 = createText("Revenue");
+				text2.position.set(120,-110,0);
+				scene.add(text2);
+				var text3 = createText("Sales");
+				text3.position.set(120,-100,0);
+				scene.add(text3);
+
                 //axes
                 drawAxes();
                 
@@ -221,6 +232,29 @@
               scene.add( line );
             }
 
+            function createText(text) {
+            	// create a canvas element
+				var canvas1 = document.createElement('canvas');
+				canvas1.width = 600;
+				canvas1.height = 120;
+				var context1 = canvas1.getContext('2d');
+				context1.font = "Bold 25px Lato";
+				context1.fillStyle = "rgba(255,255,0)";
+			    context1.fillText(text, 0, 50);
+
+				// canvas contents will be used for a texture
+				var texture1 = new THREE.Texture(canvas1)
+				texture1.needsUpdate = true;
+
+			    var material1 = new THREE.MeshBasicMaterial( {map: texture1, side:THREE.DoubleSide } );
+			    material1.transparent = true;
+
+			    var mesh1 = new THREE.Mesh(
+			        new THREE.PlaneGeometry(300, 60),
+			        material1
+			      );
+			    return mesh1
+            }
             
 			function onMouseDown() {
 
