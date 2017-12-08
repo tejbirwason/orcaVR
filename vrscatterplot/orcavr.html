@@ -65,7 +65,7 @@
 				scene.background = new THREE.Color( 0x505050 );
 
                 dolly = new THREE.Group();
-                dolly.position.set(0, 0, 20);
+                dolly.position.set(0, 25, 20);
                 scene.add( dolly );
                 
 				//camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
@@ -104,7 +104,7 @@
                 // These are the actual spheres we render
                 points = [];
                 for (var i = 0; i < 10; i++) {
-                  points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 32 ),  new THREE.MeshLambertMaterial( { color: 0x5f91e2 } ) );
+                  points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1.4, 8, 8 ),  new THREE.MeshLambertMaterial( { color: 0x5f91e2 } ) );
                   mesh.add(points[i]);
                 }
 
