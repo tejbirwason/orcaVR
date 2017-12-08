@@ -70,6 +70,7 @@
                 
 				//camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
                 camera = new THREE.PerspectiveCamera( 110, window.innerWidth / window.innerHeight, 2, 10000 );
+                camera.rotateOnAxis(new THREE.Vector3(0,1,0), 1.5*pi); 
 				dolly.add( camera );
                 
 				/*crosshair = new THREE.Mesh(
@@ -84,13 +85,13 @@
 				camera.add( crosshair );
 */
 
-				room = new THREE.Mesh(
+				/*room = new THREE.Mesh(
 					new THREE.BoxGeometry( 1000, 1000, 1000, 8, 8, 8 ),
 					new THREE.MeshBasicMaterial( { color: 0x404040, wireframe: true } )
 				);
                 room.position.z = -20;
 				scene.add( room );
-
+*/
 				scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
 
 				var light = new THREE.DirectionalLight( 0xffffff );
@@ -357,7 +358,7 @@
                   //Update VR headset position and apply to camera.
                   //controls.update();
                 //dolly.position.x += 0.1;
-                //dolly.lookAt(points[0].position);
+                dolly.lookAt(0,0,-20);
                 
 				renderer.render( scene, camera );
 
