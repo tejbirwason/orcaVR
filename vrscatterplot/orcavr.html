@@ -71,9 +71,6 @@
 				//camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
                 camera = new THREE.PerspectiveCamera( 110, window.innerWidth / window.innerHeight, 2, 10000 );
 				dolly.add( camera );
-
-                //Apply VR headset positional data to camera.
-                //controls = new THREE.VRControls( camera );
                 
 				crosshair = new THREE.Mesh(
 					new THREE.RingGeometry( 0.02, 0.04, 32 ),
@@ -87,10 +84,11 @@
 				camera.add( crosshair );
 
 				room = new THREE.Mesh(
-					new THREE.BoxGeometry( 6, 6, 6, 8, 8, 8 ),
+					new THREE.BoxGeometry( 70, 70, 70, 8, 8, 8 ),
 					new THREE.MeshBasicMaterial( { color: 0x404040, wireframe: true } )
 				);
-				//scene.add( room );
+                room.position.z = -20;
+				scene.add( room );
 
 				scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
 
@@ -104,7 +102,8 @@
                 
                 points = [];
                 for (var i = 0; i < 5; i++) {
-                  points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 32 ),  new THREE.MeshBasicMaterial( {color: 0x5f91e2} ) );
+                  points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 32 ),  new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+                //points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 32 ),  new THREE.MeshBasicMaterial( {color: 0x5f91e2} ) );
                   points[i].position.z = -20;
                   points[i].position.x = 10 + i*(-5);
                   mesh.add(points[i]);
