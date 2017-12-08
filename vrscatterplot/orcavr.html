@@ -58,7 +58,7 @@
 				info.style.top = '10px';
 				info.style.width = '100%';
 				info.style.textAlign = 'center';
-				info.innerHTML = '<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> webgl - interactive cubes';
+				info.innerHTML = 'VR Orca';
 				container.appendChild( info );
 
 				scene = new THREE.Scene();
@@ -157,13 +157,14 @@
 */
 
 				var text1 = createText("Taxes");
-				text1.position.set(150, -90, 40);
+				text1.position.set(150, -65, 60);
 				scene.add(text1);
 				var text2 = createText("Revenue");
-				text2.position.set(120,-110,0);
-				scene.add(text2);
+				text2.position.set(60,-65,20);
+				//text2.rotateOnAxis(new THREE.Vector3(0,1,0), pi/2); 
+                scene.add(text2);
 				var text3 = createText("Sales");
-				text3.position.set(120,-100,0);
+				text3.position.set(70,0,60);
 				scene.add(text3);
 
                 //axes
@@ -253,7 +254,7 @@
 			        new THREE.PlaneGeometry(300, 60),
 			        material1
 			      );
-			    return mesh1
+			    return mesh1;
             }
             
 			function onMouseDown() {
