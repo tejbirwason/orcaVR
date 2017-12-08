@@ -30,8 +30,8 @@ var radius = 50;
 
 // These are the actual spheres we render
 var points = [];
-for (var i = 0; i < 5; i++) {
-  points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 32 ),  new THREE.MeshBasicMaterial( {color: 0x5f91e2} ) );
+for (var i = 0; i < 10; i++) {
+  points[i] = new THREE.Mesh( new THREE.SphereGeometry( 2, 32, 32 ),  new THREE.MeshBasicMaterial( {color: 0x5f91e2} ) );
   scene.add(points[i]);
 }
 
@@ -53,8 +53,27 @@ points[3].position.z = -40;
 
 points[4].position.x = -30;
 points[4].position.y = 30;
-points[4].position.z = -10;
+points[4].position.z = -5;
 
+points[5].position.x = -10;
+points[5].position.y = 10;
+points[5].position.z = -40;
+
+points[6].position.x = -20;
+points[6].position.y = 20;
+points[6].position.z = -40;
+
+points[7].position.x = -40;
+points[7].position.y = -10;
+points[7].position.z = -40;
+
+points[8].position.x = 10;
+points[8].position.y = 40;
+points[8].position.z = -40;
+
+points[9].position.x = -30;
+points[9].position.y = -30;
+points[9].position.z = -10;
 
 // Floor
 var floor = new THREE.Mesh( new THREE.PlaneBufferGeometry( 100, 100, 1, 1 ), new THREE.MeshBasicMaterial( { color: 0x404040, side: THREE.DoubleSide } ) );
@@ -66,21 +85,12 @@ scene.add( floor );
 drawAxes();
 
 
-
-
 /*
 Request animation frame loop function
 */
 function animate() {
   // Apply any desired changes for the next frame. In this case, we rotate our object.
 
-
-  // theta += 0.1;
-
-  // camera.position.x = points[0].position.x + radius * Math.sin( THREE.Math.degToRad( theta ) );
-  // camera.position.z = points[0].position. + radius * Math.cos( THREE.Math.degToRad( theta ) );
-  // camera.rotateX = radius * Math.sin( THREE.Math.degToRad( theta ) );
-  // camera.lookAt( points[0].position );
 
   //Update VR headset position and apply to camera.
   controls.update();
@@ -92,13 +102,6 @@ function animate() {
 
 animate();	// Kick off animation loop
 
-/*
-Listen for click event to enter full-screen mode.
-We listen for single click because that works best for mobile for now
-*/
-document.body.addEventListener( 'click', function(){
-  effect.setFullScreen( true );
-})
 
 /*
 Listen for keyboard events
