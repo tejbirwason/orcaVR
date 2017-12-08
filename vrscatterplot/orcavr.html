@@ -100,62 +100,62 @@
                 var mesh = new THREE.Mesh(new THREE.Geometry());
                 scene.add(mesh);
                 
+                // These are the actual spheres we render
                 points = [];
-                for (var i = 0; i < 5; i++) {
-                  points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 32 ),  new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
-                //points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 32 ),  new THREE.MeshBasicMaterial( {color: 0x5f91e2} ) );
-                  points[i].position.z = -20;
-                  points[i].position.x = 10 + i*(-5);
+                for (var i = 0; i < 10; i++) {
+                  points[i] = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 32 ),  new THREE.MeshLambertMaterial( { color: 0x5f91e2 } ) );
                   mesh.add(points[i]);
                 }
 
+                points[0].position.x = -20;
+                points[0].position.y = 10;
+                points[0].position.z = -40;
+
+                points[1].position.x = -30;
+                points[1].position.y = 20;
+                points[1].position.z = -40;
+
+                points[2].position.x = -40;
+                points[2].position.y = 10;
+                points[2].position.z = -40;
+
+                points[3].position.x = -10;
+                points[3].position.y = 40;
+                points[3].position.z = -40;
+
+                points[4].position.x = -30;
+                points[4].position.y = 30;
+                points[4].position.z = -5;
+
+                points[5].position.x = -10;
+                points[5].position.y = 10;
+                points[5].position.z = -40;
+
+                points[6].position.x = -20;
+                points[6].position.y = 20;
+                points[6].position.z = -40;
+
+                points[7].position.x = -40;
+                points[7].position.y = -10;
+                points[7].position.z = -40;
+
+                points[8].position.x = 10;
+                points[8].position.y = 40;
+                points[8].position.z = -40;
+
+                points[9].position.x = -30;
+                points[9].position.y = -30;
+                points[9].position.z = -10;
+
+                // Floor
                 var floor = new THREE.Mesh( new THREE.PlaneBufferGeometry( 100, 100, 1, 1 ), new THREE.MeshBasicMaterial( { color: 0x404040, side: THREE.DoubleSide } ) );
                 floor.rotation.x = pi/2;
                 floor.position.y = -50;
                 scene.add( floor );
 
-                var material = new THREE.LineBasicMaterial({
-                  color: 0x0000ff
-                });
-
-                var geometry = new THREE.Geometry();
-                geometry.vertices.push(
-                  new THREE.Vector3( -10, 0, -10 ),
-                  new THREE.Vector3( 0, 0, -40 ),
-                  new THREE.Vector3( 0, 10, 0 )
-                );
-
-                var line = new THREE.Line( geometry, material );
-                line.position.z = -10;
-                scene.add( line );
-
-				/*var geometry = new THREE.BoxGeometry( 0.15, 0.15, 0.15 );
-
-				for ( var i = 0; i < 200; i ++ ) {
-
-					var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
-
-					object.position.x = Math.random() * 4 - 2;
-					object.position.y = Math.random() * 4 - 2;
-					object.position.z = Math.random() * 4 - 2;
-
-					object.rotation.x = Math.random() * 2 * Math.PI;
-					object.rotation.y = Math.random() * 2 * Math.PI;
-					object.rotation.z = Math.random() * 2 * Math.PI;
-
-					object.scale.x = Math.random() + 0.5;
-					object.scale.y = Math.random() + 0.5;
-					object.scale.z = Math.random() + 0.5;
-
-					object.userData.velocity = new THREE.Vector3();
-					object.userData.velocity.x = Math.random() * 0.01 - 0.005;
-					object.userData.velocity.y = Math.random() * 0.01 - 0.005;
-					object.userData.velocity.z = Math.random() * 0.01 - 0.005;
-
-					room.add( object );
-
-				}*/
-
+                //axes
+                drawAxes();
+                
 				raycaster = new THREE.Raycaster();
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -194,6 +194,32 @@
                 
 			}
 
+            function drawAxes() {
+              var material = new THREE.LineBasicMaterial({
+                color: 0x0000ff
+              });
+
+              var geometry = new THREE.Geometry();
+              geometry.vertices.push(
+                new THREE.Vector3( -40, -50, -40 ),
+                new THREE.Vector3( -40, -50, 40 ),
+                new THREE.Vector3( -40, 50, 40 ),
+              );
+
+              var line = new THREE.Line( geometry, material );
+              scene.add( line );
+
+              var geometry = new THREE.Geometry();
+              geometry.vertices.push(
+                new THREE.Vector3( -40, -50, 40 ),
+                new THREE.Vector3( 40, -50, 40 )
+              );
+
+              var line = new THREE.Line( geometry, material );
+              scene.add( line );
+            }
+
+            
 			function onMouseDown() {
 
 				isMouseDown = true;
